@@ -22,29 +22,19 @@ Using SQL, data was extracted from the Telco’s enterprise database across thre
 - Python (Gooogle Colab) - Data Cleaning and Analysis
 - Power BI - Report Visualisation
 
-### Data Cleaning/Preparation
-In this stage, the following steps were completed:
-1. Data was extracted from the enterprice data base acros the customer, billing/payments and Service Usage Entities
-2. The three entoties were joined using the shared customer_Id keys to form a data model
-3. Data was extracted with python web scraping tool from ‘https://www.airlinequality.com/airline-reviews/british-airways’
-4. Data was loaded and inspected
-5. Personal details of customers in the data are filtered out for this analysis in line with standard ethical considerations
-6. Missing values were handled
-7. Data was cleaned and formatted
-
-8. ### Data Cleaning / Preparation
+### Data Cleaning / Preparation
 In this stage, the following steps were completed:
 
-1. **Extracted with SQL** from three entities — *Customer (Customer Info)*, *Account (billing & payments)*, and *Usage (events)*.
-2. **Joined on shared keys** (`customer_id`, `account_id`) to build a clean **star-schema** analytical table.
-3. **Profiled the data** (row counts, nulls, types, distincts) to spot quality issues early.
-4. **Standardised columns** — consistent names, data types (dates, numerics, categoricals), and formats.
-5. **Removed/Masked PII** (personally identifiable information) to meet privacy and ethical guidelines.
-6. **Handled missing values** — dropped, imputed, or flagged depending on business relevance.
-7. **Deduplicated and cleaned errors/outliers** (obvious typos, impossible values, negative amounts where not allowed).
-8. **Created useful features** — e.g., billing month, usage buckets, tenure, ARPU/average spend, late-payment flags.
-9. **Validated joins and totals** — cross-checked counts and key integrity after transformations.
-10. **Materialised the curated dataset** to `Customer_Data.csv` for downstream analysis and Power BI reporting.
+1. **Extracted from enterprice data base usine SQL** Data was extracted from the enterprise data base across the *customer(customer info)*, *Account(billing & payments)*, and *Service Usage(events)* Entities.
+2. **Joined on shared keys** The three entities were joined on the shared customer_id key to build a clean **star-schema** data model for analytical use
+4. **Profiled the data** (row counts, nulls, types, distincts) to spot quality issues early.
+5. **Standardised columns** — consistent names, data types (dates, numerics, categoricals), and formats.
+6. **Removed/Masked PII** (personally identifiable information) to meet privacy and ethical guidelines.
+7. **Handled missing values** — dropped, imputed, or flagged depending on business relevance.
+8. **Deduplicated and cleaned errors/outliers** (obvious typos, impossible values, negative amounts where not allowed).
+9. **Created useful features** — e.g., billing month, usage buckets, tenure, ARPU/average spend, late-payment flags.
+10. **Validated joins and totals** — cross-checked counts and key integrity after transformations.
+11. **Materialised the curated dataset** to `Customer_Data.csv` for downstream analysis and Power BI reporting.
 
 
 ### Exploratory Data Analysis
