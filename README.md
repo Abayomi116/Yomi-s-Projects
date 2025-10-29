@@ -40,7 +40,7 @@ In this stage, the following steps were completed:
 15. **Materialised the curated dataset** to `Customer_Data.csv` for downstream analysis and Power BI reporting.
 
 ### Exploratory Data Analysis
-EDA involved exploring the Online Customer Reviews' Data (OCRs) to answer key questions such as:
+EDA involved exploring the Customer_Data.csv to answer key questions such as:
 
 1. Which customer data points most predictive of customer churn from the telecom subscription and use?
 2. What are the most corrrlated variables to Churn Status in the data
@@ -49,39 +49,12 @@ EDA involved exploring the Online Customer Reviews' Data (OCRs) to answer key qu
 ```python
 1. Inspection of the data
 #Reading the data using pandas
-df = pd.read_csv('/British Airways-Final-Data-Skytrax.csv')
+df = pd.read_csv('/content/Customer_Data.csv')
 #observing the data shape
 df.shape
-(3850, 16)
+(7043, 39)
 
-2. Identifying Short Haul Rotes from the data
-#Creating Short Haul Cities List
-short_haul_cities = [
-    "Dublin", "Edinburgh", "Manchester", "Belfast", "Glasgow", "Cardiff", "Bristol", "Newcastle", "Cork", "Aberdeen",
-    "Paris", "Amsterdam", "Brussels", "Luxembourg City", "Frankfurt", "Berlin", "Munich", "Zurich", "Geneva",
-    "Vienna", "Düsseldorf", "Hamburg", "Madrid", "Barcelona", "Lisbon", "Porto", "Milan", "Rome", "Venice", "Florence",
-    "Nice", "Marseille", "Copenhagen", "Oslo", "Stockholm", "Gothenburg", "Helsinki", "Prague", "Malta", "Tenerife","Dublin",
-"Edinburgh", "Manchester", "Belfast","Glasgow","Cardiff","Bristol","Newcastle","Cork","Aberdeen","Paris","Amsterdam","Brussels","Luxembourg City","Frankfurt","Berlin",
-"Munich","Zurich","Geneva","Vienna","Düsseldorf","Hamburg","Madrid","Barcelona","Lisbon","Porto",
-"Milan","Rome","Venice","Florence","Nice","Marseille","Copenhagen","Oslo","Stockholm","Gothenburg","Helsinki","Prague","Budapest","Warsaw","Krakow","Bratislava",
-"Ljubljana","Reykjavik","Malta","Faro","Tenerife"]
 
-#Creation of Ishort_haul DataFrame containing only short-haul Flights data
-def is_short_haul(Route):
-
-    for city in short_haul_cities:
-        if city in Route:
-            return True
-    return False
-
-df_Ishort_haul = df[df['Route'].apply(is_short_haul)]
-
-df_Ishort_haul.to_csv("/British Airways-Final-Data-Skytrax.csv", index=False)
-
-#Observing shape of the short_haul data extracted from the initial data list
-df_Ishort_haul.shape
-(770, 15) #Our data has been reduced from 3,850 rows to 770 rows (only short-haul flights).
-msno.matrix(df_Ishort_haul)
 ```
 ![msno matrix](missingno_matrix.png)
 
