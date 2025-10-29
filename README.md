@@ -26,15 +26,19 @@ Using SQL, data was extracted from the Telco’s enterprise database across thre
 In this stage, the following steps were completed:
 
 1. **Extracted from enterprice data base usine SQL** Data was extracted from the enterprise data base across the *customer(customer info)*, *Account(billing & payments)*, and *Service Usage(events)* Entities.
-2. **Joined on shared keys** The three entities were joined on the shared customer_id key to build a clean **star-schema** data model for analytical use
+2. **Joined on shared keys** The three entities were joined on the shared customer_id key to build a clean **star-schema** data model for analytical use.
 4. **Profiled the data** (row counts, nulls, types, distincts) to spot quality issues early.
-5. **Standardised columns** — consistent names, data types (dates, numerics, categoricals), and formats.
+5. **Standardised data columns** — prepared data to make suitable for KNN and regression analysis.
 6. **Removed/Masked PII** (personally identifiable information) to meet privacy and ethical guidelines.
-7. **Handled missing values** — dropped, imputed, or flagged depending on business relevance.
-8. **Deduplicated and cleaned errors/outliers** (obvious typos, impossible values, negative amounts where not allowed).
-9. **Created useful features** — e.g., billing month, usage buckets, tenure, ARPU/average spend, late-payment flags.
-10. **Validated joins and totals** — cross-checked counts and key integrity after transformations.
-11. **Materialised the curated dataset** to `Customer_Data.csv` for downstream analysis and Power BI reporting.
+7. **Handled missing values** — Imputed mean value of the Total charges for 11 blank cells under Total Charges column.
+8. **Deduplicated and cleaned errors/outliers** (obvious typos, impossible values, negative amounts and wrong category labels where corrected).
+9. **Converted categorical columns to binary** This is to enable usage by the machine learning algorithms.
+10. **One-hot encoding for multi-categorical columns** Separate columns were created for each categories in columns with multi-category values.
+11. **One-hot encoded multi-categorical columns were converted to Integers/binary** This is for machine learning use.
+12. **Standard scaler applied to numerical columns** Example, Average Monthly Long-Distance Charges, and Monthly Charges columns. This ensures that all the values have mean of 0 and standard deviation of 1 which helps put the values in the same scale.
+13. **Created useful features** — e.g., billing month, usage buckets, tenure, ARPU/average spend, late-payment flags.
+14. **Validated joins and totals** — cross-checked counts and key integrity after transformations.
+15. **Materialised the curated dataset** to `Customer_Data.csv` for downstream analysis and Power BI reporting.
 
 
 ### Exploratory Data Analysis
