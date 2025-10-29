@@ -56,9 +56,56 @@ df.shape
 
 
 ```
-![msno matrix](missingno_matrix (1).png)
+![msno matrix](missingno_matrix_(1).png)
 
 ```python
+print(df['Offer'].head(10))
+
+0    Offer E
+1        NaN
+2        NaN
+3        NaN
+4        NaN
+5        NaN
+6    Offer D
+7    Offer D
+8    Offer C
+9    Offer B
+Name: Offer, dtype: object
+
+# A review of the data reveals that the null/NaN vales are ‘None’. This means the customer was not given a promotional offer.
+# The NaN values would be replaced with 'None' which would be added as a category under the Offer Column (for customers without a promotional offer).
+
+df['Offer'] = df['Offer'].fillna('None')
+
+df['Offer'] = df['Offer'].astype('category')
+
+print(df['Offer'].head(10))
+
+0    Offer E
+1       None
+2       None
+3       None
+4       None
+5       None
+6    Offer D
+7    Offer D
+8    Offer C
+9    Offer B
+Name: Offer, dtype: category
+Categories (6, object): ['None', 'Offer A', 'Offer B', 'Offer C', 'Offer D', 'Offer E']
+
+# "None" us now a valid category in the Offer Column.
+# This is because promotional offers is a valid variable in the context of customer churn analysis.
+# Customer adoption of promotional offer or not, could influence churn behaviour.
+
+df.isnull().sum()
+
+```
+df['Offer'] = df['Offer'].replace('None', 'None')
+
+
+
 #The bank rows are replaced with mean of each column and 
 df_Ishort_haul['Wifi & Connectivity'].fillna(df_Ishort_haul['Wifi & Connectivity'].mean(), inplace=True)
 df_Ishort_haul['Inflight Entertainment'].fillna(df_Ishort_haul['Inflight Entertainment'].mean(), inplace=True)
