@@ -56,7 +56,7 @@ df.shape
 
 
 ```
-![msno matrix](missingno_matrix.png)
+![msno matrix](missingno_matrix (1).png)
 
 ```python
 #The bank rows are replaced with mean of each column and 
