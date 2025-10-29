@@ -35,19 +35,15 @@ In this stage, the following steps were completed:
 9. **Converted categorical columns to binary** This is to enable usage by the machine learning algorithms.
 10. **One-hot encoding for multi-categorical columns** Separate columns were created for each categories in columns with multi-category values.
 11. **One-hot encoded multi-categorical columns were converted to Integers/binary** This is for machine learning use.
-12. **Standard scaler applied to numerical columns** Example, Average Monthly Long-Distance Charges, and Monthly Charges columns. This ensures that all the values have mean of 0 and standard deviation of 1 which helps put the values in the same scale.
-13. **Created useful features** — e.g., billing month, usage buckets, tenure, ARPU/average spend, late-payment flags.
-14. **Validated joins and totals** — cross-checked counts and key integrity after transformations.
+12. **Standard scaler applied to numerical columns** such as Average Monthly Long-Distance Charges and Monthly Charges columns. This helps put the values in the same scale.
+13. **Validated joins and totals** — cross-checked counts and key integrity after transformations.
 15. **Materialised the curated dataset** to `Customer_Data.csv` for downstream analysis and Power BI reporting.
-
 
 ### Exploratory Data Analysis
 EDA involved exploring the Online Customer Reviews' Data (OCRs) to answer key questions such as:
 
-1. Which customer data points most predictive of customer satisfaction and operational efficiency in British Airways short-haul flights?
-2. What are the primary factors influencing customer recommendations of British Airways’ short-haul services?
-3. Can operational efficiency and customer satisfaction be improved if customers data is reviewed and analysed?
-4. What actionable recommendations can be derived from this study for British Airways, and what are the implications for future research?
+1. Which customer data points most predictive of customer churn from the telecom subscription and use?
+2. What are the most corrrlated variables to Churn Status in the data
 
 ### Data Analysis
 ```python
