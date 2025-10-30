@@ -134,7 +134,9 @@ for col in columns_to_check:
 Unique values in Streaming Music after replacement: ['No' 'Yes' 'No internet service']
 Unique values in Unlimited Data after replacement: ['Yes' 'No' 'No internet service']
 
-#
+# For KNN and regression models, all categorical data columns with YES and/or NO values are changed to 1 and 0 (binary).
+This is because machine learning algorithms and models use numerical input.
+
 df['gender'] = df['gender'].map({'Female': 0, 'Male': 1})
 df['Married'] = df['Married'].map({'No': 0, 'Yes': 1})
 df['Dependents'] = df['Dependents'].map({'No': 0, 'Yes': 1})
@@ -142,6 +144,24 @@ df['PhoneService'] = df['PhoneService'].map({'Yes': 1, 'No': 0})
 df['Paperless Billing'] = df['Paperless Billing'].map({'Yes': 1, 'No': 0})
 df['Internet Service'] = df['Internet Service'].map({'Yes': 1, 'No': 0})
 df['Churn Status'] = df['Churn Status'].map({'Yes': 1, 'No': 0})
+
+df[['gender', 'Married', 'Dependents', 'PhoneService', 'Paperless Billing', 'Internet Service', 'Churn Status']]
+gender	Married	Dependents	PhoneService	Paperless Billing	Internet Service	Churn Status
+0	0	1	0	0	1	1	0
+1	1	0	0	1	0	1	0
+2	1	0	0	1	1	1	1
+3	1	0	0	0	0	1	0
+4	0	0	0	1	1	1	1
+...	...	...	...	...	...	...	...
+7038	1	1	1	1	1	1	0
+7039	0	1	1	1	1	1	0
+7040	0	1	1	0	1	1	0
+7041	1	1	0	1	1	1	1
+7042	1	0	0	1	1	1	0
+7043 rows × 7 columns
+
+
+
 
 ```
 df['Offer'] = df['Offer'].replace('None', 'None')
