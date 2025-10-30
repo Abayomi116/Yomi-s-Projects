@@ -74,7 +74,8 @@ print(df['Offer'].head(10))
 Name: Offer, dtype: object
 
 # A review of the data reveals that the null/NaN vales are ‘None’. This means the customer was not given a promotional offer.
-# The NaN values would be replaced with 'None' which would be added as a category under the Offer Column (for customers without a promotional offer).
+# The NaN values would be replaced with 'None' which would be added as a category under the Offer Column
+(for customers without a promotional offer).
 
 df['Offer'] = df['Offer'].fillna('None')
 
@@ -101,8 +102,51 @@ Categories (6, object): ['None', 'Offer A', 'Offer B', 'Offer C', 'Offer D', 'Of
 
 df.isnull().sum()
 
+columns_to_check = ['OnlineSecurity', 'OnlineBackup', 'DeviceProtection plan',
+                    'Tech Support', 'Streaming TV', 'Streaming Movies',
+                    'Streaming Music', 'Unlimited Data']
+
+for col in columns_to_check:
+    unique_values = df[col].unique()
+    print(f"Unique values in {col}: {unique_values}")
+
+Unique values in OnlineSecurity: ['No' 'Yes' 'No internet service']
+Unique values in OnlineBackup: ['Yes' 'No' 'No internet service']
+Unique values in DeviceProtection plan: ['No' 'Yes' 'No internet service']
+Unique values in Tech Support: ['No' 'Yes' 'No internet service']
+Unique values in Streaming TV: ['No' 'Yes' 'No internet service']
+Unique values in Streaming Movies: ['No' 'Yes' 'No internet service']
+Unique values in Streaming Music: ['No' 'Yes' '0']
+Unique values in Unlimited Data: ['Yes' 'No' '0']
+
+# Unique values check shows that the third category of ‘No internet service’ is presented as ‘0’
+for Streaming Music and Unlimited Data.
+# ‘0’ will be cahanged to ‘No internet service’ like others multi categorical columns.
+
+df['Streaming Music'] = df['Streaming Music'].replace('0', 'No internet service')
+df['Unlimited Data'] = df['Unlimited Data'].replace('0', 'No internet service')
+
+columns_to_check = ['Streaming Music', 'Unlimited Data']
+for col in columns_to_check:
+    unique_values = df[col].unique()
+    print(f"Unique values in {col} after replacement: {unique_values}")
+
+Unique values in Streaming Music after replacement: ['No' 'Yes' 'No internet service']
+Unique values in Unlimited Data after replacement: ['Yes' 'No' 'No internet service']
+
+#
+df['gender'] = df['gender'].map({'Female': 0, 'Male': 1})
+df['Married'] = df['Married'].map({'No': 0, 'Yes': 1})
+df['Dependents'] = df['Dependents'].map({'No': 0, 'Yes': 1})
+df['PhoneService'] = df['PhoneService'].map({'Yes': 1, 'No': 0})
+df['Paperless Billing'] = df['Paperless Billing'].map({'Yes': 1, 'No': 0})
+df['Internet Service'] = df['Internet Service'].map({'Yes': 1, 'No': 0})
+df['Churn Status'] = df['Churn Status'].map({'Yes': 1, 'No': 0})
+
 ```
 df['Offer'] = df['Offer'].replace('None', 'None')
+
+
 
 
 
