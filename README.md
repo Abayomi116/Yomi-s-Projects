@@ -176,6 +176,9 @@ One-hot encoding is good for KNN and Logistic regression because it helps presen
 category as a binary column which would clearly help as a datapoint in allocating clusters or line of best fit. 
 This was chosen over Label Encoder in this report because Label Encoder may wrongly imply an ordinal relationship (WU et al 2022)
 
+# One-hot encoded multi-categorical columns have been converted to Integers/binary for machine learning use
+![One-hot encoding](binary.png)
+
 ```
 df['Offer'] = df['Offer'].replace('None', 'None')
 
