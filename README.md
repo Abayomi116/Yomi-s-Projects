@@ -177,7 +177,13 @@ category as a binary column which would clearly help as a datapoint in allocatin
 This was chosen over Label Encoder in this report because Label Encoder may wrongly imply an ordinal relationship (WU et al 2022)
 
 ### One-hot encoded multi-categorical columns have been converted to Integers/binary for machine learning use
-![One-hot encoding](Binary.png)
+![One-hot encoding](Binary.jpg)
+
+Standard scaler was applied to numerical columns such as Average Monthly Long-Distance Charges, and Monthly Charges. Code in Appendix 20. This ensures that all the values have mean of 0 and standard deviation of 1 which helps put the values in the same scale.
+
+Below shows the outcome after all categorical columns have been turned to binary, 
+feature scaling have been applied to numerical columns, and irrelevant columns have been dropped.
+
 
 ```
 df['Offer'] = df['Offer'].replace('None', 'None')
