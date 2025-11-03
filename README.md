@@ -185,6 +185,8 @@ Below shows the outcome after all categorical columns have been turned to binary
 feature scaling have been applied to numerical columns, and irrelevant columns have been dropped.
 
 
+
+
 ```
 df['Offer'] = df['Offer'].replace('None', 'None')
 
