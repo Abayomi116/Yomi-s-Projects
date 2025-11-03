@@ -145,23 +145,14 @@ df['Paperless Billing'] = df['Paperless Billing'].map({'Yes': 1, 'No': 0})
 df['Internet Service'] = df['Internet Service'].map({'Yes': 1, 'No': 0})
 df['Churn Status'] = df['Churn Status'].map({'Yes': 1, 'No': 0})
 
-df[['gender', 'Married', 'Dependents', 'PhoneService', 'Paperless Billing', 'Internet Service', 'Churn Status']]
-gender	Married	Dependents	PhoneService	Paperless Billing	Internet Service	Churn Status
-0	0	1	0	0	1	1	0
-1	1	0	0	1	0	1	0
-2	1	0	0	1	1	1	1
-3	1	0	0	0	0	1	0
-4	0	0	0	1	1	1	1
-...	...	...	...	...	...	...	...
-7038	1	1	1	1	1	1	0
-7039	0	1	1	1	1	1	0
-7040	0	1	1	0	1	1	0
-7041	1	1	0	1	1	1	1
-7042	1	0	0	1	1	1	0
-7043 rows × 7 columns
+cols = ['gender','Married','Dependents','PhoneService',
+        'Paperless Billing','Internet Service','Churn Status']
 
+first4 = df[cols].head(4)     # or df[cols].iloc[:4]
+print(first4)
 
-
+```
+![print frst4](first4.png)
 
 ```
 df['Offer'] = df['Offer'].replace('None', 'None')
