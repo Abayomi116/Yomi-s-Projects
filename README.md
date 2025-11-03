@@ -184,8 +184,7 @@ Standard scaler was applied to numerical columns such as Average Monthly Long-Di
 Below shows the outcome after all categorical columns have been turned to binary, 
 feature scaling have been applied to numerical columns, and irrelevant columns have been dropped.
 
-
-
+![Final Scale](Final_Scale.jpg)
 
 ```
 df['Offer'] = df['Offer'].replace('None', 'None')
