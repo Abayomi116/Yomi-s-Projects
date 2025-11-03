@@ -72,10 +72,13 @@ print(df['Offer'].head(10))
 8    Offer C
 9    Offer B
 Name: Offer, dtype: object
+```
 
 # A review of the data reveals that the null/NaN vales are ‘None’. This means the customer was not given a promotional offer.
 # The NaN values would be replaced with 'None' which would be added as a category under the Offer Column
 (for customers without a promotional offer).
+
+```python
 
 df['Offer'] = df['Offer'].fillna('None')
 
@@ -96,9 +99,13 @@ print(df['Offer'].head(10))
 Name: Offer, dtype: category
 Categories (6, object): ['None', 'Offer A', 'Offer B', 'Offer C', 'Offer D', 'Offer E']
 
+```
+
 # "None" us now a valid category in the Offer Column.
 # This is because promotional offers is a valid variable in the context of customer churn analysis.
 # Customer adoption of promotional offer or not, could influence churn behaviour.
+
+```python
 
 df.isnull().sum()
 
@@ -119,10 +126,13 @@ Unique values in Streaming Movies: ['No' 'Yes' 'No internet service']
 Unique values in Streaming Music: ['No' 'Yes' '0']
 Unique values in Unlimited Data: ['Yes' 'No' '0']
 
+```
+
 # Unique values check shows that the third category of ‘No internet service’ is presented as ‘0’
-for Streaming Music and Unlimited Data.
+# for Streaming Music and Unlimited Data.
 # ‘0’ will be cahanged to ‘No internet service’ like others multi categorical columns.
 
+```python
 df['Streaming Music'] = df['Streaming Music'].replace('0', 'No internet service')
 df['Unlimited Data'] = df['Unlimited Data'].replace('0', 'No internet service')
 
@@ -134,8 +144,12 @@ for col in columns_to_check:
 Unique values in Streaming Music after replacement: ['No' 'Yes' 'No internet service']
 Unique values in Unlimited Data after replacement: ['Yes' 'No' 'No internet service']
 
+```
+
 # For KNN and regression models, all categorical data columns with YES and/or NO values are changed to 1 and 0 (binary).
 This is because machine learning algorithms and models use numerical input.
+
+```python
 
 df['gender'] = df['gender'].map({'Female': 0, 'Male': 1})
 df['Married'] = df['Married'].map({'No': 0, 'Yes': 1})
@@ -153,6 +167,14 @@ print(first4)
 
 ```
 ![print frst4](first4.png)
+
+# One-hot encoding has created columns for each categories. 
+For example, the Streaming Movies column has now split to Streaming Movies_No, Streaming Movies_Yes and Streaming Movies_No internet service. 
+However, their values are in Boolean values (True/False) instead of integers (1/0).
+
+One-hot encoding is good for KNN and Logistic regression because it helps presents each 
+category as a binary column which would clearly help as a datapoint in allocating clusters or line of best fit. 
+This was chosen over Label Encoder in this report because Label Encoder may wrongly imply an ordinal relationship (WU et al 2022)
 
 ```
 df['Offer'] = df['Offer'].replace('None', 'None')
