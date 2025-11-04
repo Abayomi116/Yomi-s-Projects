@@ -177,16 +177,88 @@ category as a binary column which would clearly help as a datapoint in allocatin
 This was chosen over Label Encoder in this report because Label Encoder may wrongly imply an ordinal relationship (WU et al 2022)
 
 ### One-hot encoded multi-categorical columns have been converted to Integers/binary for machine learning use
+
+```python
+
+df['gender'] = df['gender'].map({'Female': 0, 'Male': 1})
+df['Married'] = df['Married'].map({'No': 0, 'Yes': 1})
+df['Dependents'] = df['Dependents'].map({'No': 0, 'Yes': 1})
+df['PhoneService'] = df['PhoneService'].map({'Yes': 1, 'No': 0})
+df['Paperless Billing'] = df['Paperless Billing'].map({'Yes': 1, 'No': 0})
+df['Internet Service'] = df['Internet Service'].map({'Yes': 1, 'No': 0})
+df['Churn Status'] = df['Churn Status'].map({'Yes': 1, 'No': 0})
+```
+
 ![One-hot encoding](Binary.jpg)
 
+```python
+
+df = pd.get_dummies(df, columns=['Internet Type', 'Contract', 'Payment Method', 'MultipleLines' ,'Offer', 'OnlineSecurity', 'OnlineBackup',
+                                 'DeviceProtection plan','Tech Support', 'Streaming TV','Streaming Movies',
+                                 'Streaming Music', 'Unlimited Data'], drop_first=False)
+
+```
+#### Change boolean columns to integer data type
+```python
+boolean_columns = ['Internet Type_DSL',
+   'Internet Type_Fiber optic', 'Internet Type_No',
+       'Contract_Month-to-month', 'Contract_One year', 'Contract_Two year',
+       'Payment Method_Bank transfer (automatic)',
+       'Payment Method_Credit card (automatic)',
+       'Payment Method_Electronic check', 'Payment Method_Mailed check',
+       'MultipleLines_No', 'MultipleLines_No phone service',
+       'MultipleLines_Yes', 'Offer_Offer A', 'Offer_Offer B', 'Offer_Offer C',
+       'Offer_Offer D', 'Offer_Offer E', 'Offer_None', 'OnlineSecurity_No',
+       'OnlineSecurity_No internet service', 'OnlineSecurity_Yes',
+       'OnlineBackup_No', 'OnlineBackup_No internet service',
+       'OnlineBackup_Yes', 'DeviceProtection plan_No',
+       'DeviceProtection plan_No internet service',
+       'DeviceProtection plan_Yes', 'Tech Support_No',
+       'Tech Support_No internet service', 'Tech Support_Yes',
+       'Streaming TV_No', 'Streaming TV_No internet service',
+       'Streaming TV_Yes', 'Streaming Movies_No',
+       'Streaming Movies_No internet service', 'Streaming Movies_Yes',
+       'Streaming Music_No', 'Streaming Music_No internet service',
+       'Streaming Music_Yes', 'Unlimited Data_No',
+       'Unlimited Data_No internet service', 'Unlimited Data_Yes']
+
+```
+#### Apply Standard Scaler to numerical columns
 Standard scaler was applied to numerical columns such as Average Monthly Long-Distance Charges, and Monthly Charges. Code in Appendix 20. This ensures that all the values have mean of 0 and standard deviation of 1 which helps put the values in the same scale.
+```python
+from sklearn.preprocessing import StandardScaler
+
+numerical_cols = ['Avg Monthly Long Distance Charges',
+                  'Avg Monthly GB Download',
+                  'Monthly Charges',
+                  'Total Charges',
+                  'Total Refunds',
+                  'Total Extra Data Charges',
+                  'Total Long Distance Charges',
+                  'Total Revenue']
+
+
+scaler = StandardScaler()
+
+df[numerical_cols] = scaler.fit_transform(df[numerical_cols])
+
+df.head()
+`````
 
 Below shows the outcome after all categorical columns have been turned to binary, 
 feature scaling have been applied to numerical columns, and irrelevant columns have been dropped.
 
 ![Final Scale](Final_Scale.jpg)
 
+### Correlation 
+
+```python
+df.corr()['Churn Status'].sort_values(ascending = False)
 ```
+![Correlation](correlation.jpg)
+
+```
+```python
 df['Offer'] = df['Offer'].replace('None', 'None')
 
 
