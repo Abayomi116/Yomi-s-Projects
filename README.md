@@ -243,8 +243,7 @@ scaler = StandardScaler()
 df[numerical_cols] = scaler.fit_transform(df[numerical_cols])
 
 df.head()
-`````
-
+```
 Below shows the outcome after all categorical columns have been turned to binary, 
 feature scaling have been applied to numerical columns, and irrelevant columns have been dropped.
 
@@ -255,12 +254,30 @@ feature scaling have been applied to numerical columns, and irrelevant columns h
 
 ```python
 df.corr()['Churn Status'].sort_values(ascending = False)
+
 ```
 ![Correlation](correlation.jpg)
 
-```
 This shows that the most correlated variables to Churn status are Monthly Contracts, Lack of Online Security Subscription, and Lack of Tech Support.
-```python
+
+## MACHINE LEARNING (KNN)
+### Using All Data Set Variables
+For the KNN model, our Feature Data set will be all Columns in the data except the Churn Status Column. Hence, we separate the Churn Status column. Churn Status is our Target Data for analysis.
+Feature data is defined as X and Target data is defined as y.
+We then split our data to train and test data.
+We have chosen the n Neighbours 11 to prevent overfitting
+As seen in figure 20, our KNN model fit would be the trained data for X and y.
+Our KNNpredict is the X-test showing the churn prediction of 1 or 0 for all the rows (each of all the customers) in the test sample(test).
+A check of the X-test data shows 2,113 rows. Hence, we have churn prediction for 2,113 customers with varying data sets.
+
+```Python
+X = df.drop(columns = ['Churn Status'], axis=1)
+y = df['Churn Status'].values
+
+X_train, X_test, y_train, y_test = train_test_split(X,y,test_size = 0.30, random_state = 40, stratify=y)
+
+
+
 df['Offer'] = df['Offer'].replace('None', 'None')
 
 
