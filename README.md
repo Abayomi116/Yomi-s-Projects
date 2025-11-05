@@ -250,7 +250,8 @@ feature scaling have been applied to numerical columns, and irrelevant columns h
 
 ![Final Scale](Final_Scale.jpg)
 
-### Correlation 
+## CRITICAL ANALYSIS OF DATA USINGS MACHINE LEARNING METHODS
+### Correlation of variables to Churn Status
 
 ```python
 df.corr()['Churn Status'].sort_values(ascending = False)
@@ -258,6 +259,7 @@ df.corr()['Churn Status'].sort_values(ascending = False)
 ![Correlation](correlation.jpg)
 
 ```
+This shows that the most correlated variables to Churn status are Monthly Contracts, Lack of Online Security Subscription, and Lack of Tech Support.
 ```python
 df['Offer'] = df['Offer'].replace('None', 'None')
 
