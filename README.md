@@ -374,6 +374,14 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random
 lr_model = LogisticRegression()
 lr_model.fit(X_train, y_train)
 ```
+![logistic_regression_Output](logistic_regression_Output.jpg)
+```python
+accuracy_lr = lr_model.score(X_test, y_test)
+print("Logistic Regression accuracy:", accuracy_lr)
+[ ]
+accuracy_lr = lr_model.score(X_test, y_test)
+print("Logistic Regression accuracy:", accuracy_lr)
+Logistic Regression accuracy: 0.8121154756270705
 
 
 df['Offer'] = df['Offer'].replace('None', 'None')
