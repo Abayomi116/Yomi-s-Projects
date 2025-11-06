@@ -269,13 +269,111 @@ We have chosen the n Neighbours 11 to prevent overfitting
 As seen in figure 20, our KNN model fit would be the trained data for X and y.
 Our KNNpredict is the X-test showing the churn prediction of 1 or 0 for all the rows (each of all the customers) in the test sample(test).
 A check of the X-test data shows 2,113 rows. Hence, we have churn prediction for 2,113 customers with varying data sets.
-
 ```Python
+
+x = df[['OnlineSecurity_No', 'Contract_Month-to-month', 'Tech Support_No',
+        'Internet Type_Fiber optic','Paperless Billing', 'Senior Citizen',
+        'gender']]
+
+y = df['Churn Status']
+
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.30, random_state=40, stratify=y)
+
+knn_model = KNeighborsClassifier(n_neighbors=11)
+knn_model.fit(x_train, y_train)
+
+df1 = x.iloc[:5]
+
+single_prediction = knn_model.predict(x_test.iloc[:5])
+print(single_prediction)
+
+[0 0 0 1 0]
+
+accuracy_knn = knn_model.score(x_test, y_test)
+print("KNN accuracy:", accuracy_knn)
+
+KNN accuracy: 0.7595835305253195
+
+predicted_y = knn_model.predict(x_test)
+print(classification_report(y_test, predicted_y))
+
+              precision    recall  f1-score   support
+
+           0       0.82      0.85      0.84      1552
+           1       0.55      0.50      0.52       561
+
+    accuracy                           0.76      2113
+   macro avg       0.69      0.68      0.68      2113
+weighted avg       0.75      0.76      0.76      2113
+
+
+X = df.drop(['Churn Reason', 'Churn Status', 'Churn Category'], axis=1)
+y = df['Churn Category']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=40, stratify=y)
+
+knn_model = KNeighborsClassifier(n_neighbors=11)
+knn_model.fit(X_train, y_train)
+
+single_prediction = knn_model.predict([x_test.iloc[3]])
+print(single_prediction)
+
+['Competitor']
+
+accuracy_knn = knn_model.score(x_test, y_test)
+print("KNN accuracy:", accuracy_knn)
+
+KNN accuracy: 0.6351159488878372
+
+X = df.drop(['Churn Status'], axis=1)
+y = df['Churn Status']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=40, stratify=y)
+
+knn_model = KNeighborsClassifier(n_neighbors=11)
+knn_model.fit(X_train, y_train)
+
+knn_model.predict(X_test)
+
+array([0, 0, 0, ..., 1, 0, 0])
+
+X_test.shape
+
+(2113, 61)
+
+accuracy_knn = knn_model.score(X_test, y_test)
+print("KNN accuracy:", accuracy_knn)
+
+predicted_y = knn_model.predict(X_test)
+
+print(classification_report(y_test, predicted_y))
+
+              precision    recall  f1-score   support
+
+           0       0.85      0.85      0.85      1552
+           1       0.59      0.57      0.58       561
+
+    accuracy                           0.78      2113
+   macro avg       0.72      0.71      0.71      2113
+weighted avg       0.78      0.78      0.78      2113
+
+
 X = df.drop(columns = ['Churn Status'], axis=1)
 y = df['Churn Status'].values
 
 X_train, X_test, y_train, y_test = train_test_split(X,y,test_size = 0.30, random_state = 40, stratify=y)
 
+```
+# LOGISTIC REGRESSION
+```python
+X = df.drop(['Churn Status'], axis=1)
+y = df['Churn Status']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=40, stratify=y)
+
+lr_model = LogisticRegression()
+lr_model.fit(X_train, y_train)
+```
 
 
 df['Offer'] = df['Offer'].replace('None', 'None')
