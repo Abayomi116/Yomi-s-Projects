@@ -222,6 +222,7 @@ boolean_columns = ['Internet Type_DSL',
        'Streaming Music_Yes', 'Unlimited Data_No',
        'Unlimited Data_No internet service', 'Unlimited Data_Yes']
 
+df[boolean_columns] = df[boolean_columns].astype(int)
 ```
 #### Apply Standard Scaler to numerical columns
 Standard scaler was applied to numerical columns such as Average Monthly Long-Distance Charges, and Monthly Charges. Code in Appendix 20. This ensures that all the values have mean of 0 and standard deviation of 1 which helps put the values in the same scale.
@@ -241,6 +242,10 @@ numerical_cols = ['Avg Monthly Long Distance Charges',
 scaler = StandardScaler()
 
 df[numerical_cols] = scaler.fit_transform(df[numerical_cols])
+
+
+
+
 
 df.head()
 ```
@@ -262,14 +267,29 @@ This shows that the most correlated variables to Churn status are Monthly Contra
 
 ## MACHINE LEARNING (KNN)
 ### Using All Data Set Variables
+
+#### Spliting X and Y as Feature and Target Variables
+
+```Python
 For the KNN model, our Feature Data set will be all Columns in the data except the Churn Status Column. Hence, we separate the Churn Status column. Churn Status is our Target Data for analysis.
 Feature data is defined as X and Target data is defined as y.
 We then split our data to train and test data.
 We have chosen the n Neighbours 11 to prevent overfitting
 KNN model fit would be the trained data for X and y.
+X = df.drop(columns = ['Churn Status'], axis=1)
+y = df['Churn Status'].values
+
+X_train, X_test, y_train, y_test = train_test_split(X,y,test_size = 0.30, random_state = 40, stratify=y)
+
+knn_model = KNeighborsClassifier(n_neighbors=11)
+knn_model.fit(x_train, y_train)
+
+knn_model.predict(X_test)
+
+array([0, 0, 0, ..., 1, 0, 0])
 
 A check of the X-test data shows 2,113 rows. Hence, we have churn prediction for 2,113 customers with varying data sets.
-
+```
 ```Python
 
 x = df[['OnlineSecurity_No', 'Contract_Month-to-month', 'Tech Support_No',
