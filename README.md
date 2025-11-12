@@ -266,9 +266,10 @@ For the KNN model, our Feature Data set will be all Columns in the data except t
 Feature data is defined as X and Target data is defined as y.
 We then split our data to train and test data.
 We have chosen the n Neighbours 11 to prevent overfitting
-As seen in figure 20, our KNN model fit would be the trained data for X and y.
-Our KNNpredict is the X-test showing the churn prediction of 1 or 0 for all the rows (each of all the customers) in the test sample(test).
+KNN model fit would be the trained data for X and y.
+
 A check of the X-test data shows 2,113 rows. Hence, we have churn prediction for 2,113 customers with varying data sets.
+
 ```Python
 
 x = df[['OnlineSecurity_No', 'Contract_Month-to-month', 'Tech Support_No',
